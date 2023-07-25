@@ -37,10 +37,10 @@ public class AdminController {
 	
 	@GetMapping(value ="/adminAd/{id}")
 	public AdManagement  getAdById(@PathVariable("id") int id) {
-		AdManagement ad;
+		
 		AdminDataAccess adData = new AdminDataAccess();
-		ad =  adData.adminAdById(id);
-		return ad;
+		  return adData.adminAdById(id);
+		
 	}
 	
 	@PostMapping(value =  "/updateAdStatus")
