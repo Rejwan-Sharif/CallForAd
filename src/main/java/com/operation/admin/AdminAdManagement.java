@@ -21,11 +21,12 @@ public class AdminAdManagement {
 	private String other_details;
 	private String adStatus;
 	private int vendorId;
+	private String promotionStatus;
 	
 	public AdminAdManagement(int id, String title, String location, String type, String status, double height,
 			double width, String area, String purpose, String facing, double price, String title_image,
 			String second_image, String third_image, String fourth_image, String final_image, String other_details,
-			String adStatus, int vendorId) {
+			String adStatus, int vendorId,String promotionStatus) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -46,6 +47,15 @@ public class AdminAdManagement {
 		this.other_details = other_details;
 		this.adStatus = adStatus;
 		this.vendorId = vendorId;
+		this.promotionStatus = promotionStatus;
+	}
+
+	public String getPromotionStatus() {
+		return promotionStatus;
+	}
+
+	public void setPromotionStatus(String promotionStatus) {
+		this.promotionStatus = promotionStatus;
 	}
 
 	public AdminAdManagement() {

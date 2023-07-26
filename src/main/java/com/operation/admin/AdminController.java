@@ -65,6 +65,13 @@ public class AdminController {
 		return ad;
 	}
 	
+	@GetMapping(value = "/showProAd")
+	public List<AdManagement>getProAd(AdManagement adm){
+		AdminDataAccess ada= new  AdminDataAccess();
+		return ada.showProList(adm);
+	}
+	
+	
 	
 
 }

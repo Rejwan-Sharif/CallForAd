@@ -86,6 +86,7 @@ public class AdminDataAccess {
 					ad.setOther_details(rs.getString(17));
 					ad.setAdStatus(rs.getString(18));
 					ad.setVendorId(rs.getInt(19));
+					ad.setPromotionStatus(rs.getString(20));
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -98,9 +99,10 @@ public class AdminDataAccess {
 	  public void updateStatus(AdManagement adm) {
 		  
 		  try {
-			pst = db.get().prepareStatement("update ad set ad_status =? where ad_id = ?");
+			pst = db.get().prepareStatement("update ad set ad_status =? or promotionStatus = ? where ad_id = ?");
 			pst.setString(1, adm.getAdStatus());
-			pst.setInt(2, adm.getId());
+			pst.setString(2, adm.getPromotionStatus());
+			pst.setInt(3, adm.getId());
 			pst.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -138,6 +140,7 @@ public class AdminDataAccess {
 					adList.setOther_details(rs.getString(17));
 					adList.setAdStatus(rs.getString(18));
 					adList.setVendorId(rs.getInt(19));
+					adList.setPromotionStatus(rs.getString(20));
 					showAllList.add(adList);
 				}
 			} catch (Exception e) {
@@ -173,6 +176,7 @@ public class AdminDataAccess {
 					ad.setOther_details(rs.getString(17));
 					ad.setAdStatus(rs.getString(18));
 					ad.setVendorId(rs.getInt(19));
+					ad.setPromotionStatus(rs.getString(20));
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -181,5 +185,45 @@ public class AdminDataAccess {
 	    	 
 	    	 return ad;
 	     }
+		
+		
+		public List<AdManagement>showProList(AdManagement adList){
+		 List<AdManagement>	proList = new ArrayList<>();
+			
+			try {
+				
+				pst =  db.get().prepareStatement("select * from ad where promotionStatus = ? order by ad_id desc");
+				pst.setString(1, "Promoted");
+				ResultSet rs = pst.executeQuery();
+				while(rs.next()) {
+					adList = new AdManagement();
+					adList.setId(rs.getInt(1));
+					adList.setTitle(rs.getString(2));
+					adList.setLocation(rs.getString(3));
+					adList.setType(rs.getString(4));
+					adList.setStatus(rs.getString(5));
+					adList.setHeight(rs.getDouble(6));
+					adList.setWidth(rs.getDouble(7));
+					adList.setArea(rs.getString(8));
+					adList.setPurpose(rs.getString(9));
+					adList.setFacing(rs.getString(10));
+					adList.setPrice(rs.getDouble(11));
+					adList.setTitle_image(rs.getString(12));
+					adList.setSecond_image(rs.getString(13));
+					adList.setThird_image(rs.getString(15));
+					adList.setFourth_image(rs.getString(15));
+					adList.setFinal_image(rs.getString(16));
+					adList.setOther_details(rs.getString(17));
+					adList.setAdStatus(rs.getString(18));
+					adList.setVendorId(rs.getInt(19));
+					adList.setPromotionStatus(rs.getString(20));
+					proList.add(adList);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
+			}
+			return proList;
+		}
 	  
 }

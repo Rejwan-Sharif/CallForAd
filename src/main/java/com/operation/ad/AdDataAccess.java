@@ -17,7 +17,7 @@ public class AdDataAccess {
   public void postAd(AdManagement ad) {
 	  
 	  try {
-		 pst =  db.get().prepareStatement("insert into ad values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		 pst =  db.get().prepareStatement("insert into ad values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		 pst.setString(1, null);
 		 pst.setString(2, ad.getTitle());
 		 pst.setString(3, ad.getLocation());
@@ -37,6 +37,8 @@ public class AdDataAccess {
 		 pst.setString(17, ad.getOther_details());
 		 pst.setString(18, "Pending");
 		 pst.setInt(19, ad.getVendorId());
+		 pst.setString(20, "Not Promoted");
+		 
 		 pst.executeUpdate();
 	} catch (Exception e) {
 		// TODO: handle exception
@@ -96,6 +98,8 @@ public class AdDataAccess {
     		 pst.setString(16, adm.getOther_details());
     		 pst.setString(17, "Pending");
     		 pst.setInt(18, adm.getId());
+  
+    		 
     		 pst.executeUpdate();
     			return adm;	 
 		} catch (Exception e) {
