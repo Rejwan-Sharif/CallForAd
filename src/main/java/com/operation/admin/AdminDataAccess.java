@@ -99,7 +99,7 @@ public class AdminDataAccess {
 	  public void updateStatus(AdManagement adm) {
 		  
 		  try {
-			pst = db.get().prepareStatement("update ad set ad_status =? or promotionStatus = ? where ad_id = ?");
+			pst = db.get().prepareStatement("update ad set ad_status =?, promotionStatus = ? where ad_id = ?");
 			pst.setString(1, adm.getAdStatus());
 			pst.setString(2, adm.getPromotionStatus());
 			pst.setInt(3, adm.getId());
