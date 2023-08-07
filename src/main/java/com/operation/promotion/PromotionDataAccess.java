@@ -5,12 +5,17 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.operation.db;
-
+import com.operation.mail.EmailSenderService;
+@Service
 public class PromotionDataAccess {
 
 	PreparedStatement pst;
+	@Autowired
+	EmailSenderService mail;
 	
 	public Promotion insertPromotion(Promotion pm) {
 		
@@ -35,7 +40,12 @@ public class PromotionDataAccess {
 			// TODO: handle exception
 			System.out.println(e);
 		}
-		
+		mail.sendEmail(pm.getEmail(),"Promotion Succeed", "Dear, "+pm.getCardHolderName()
+		+"\n"+"\n Your Payment Is Succeed."
+		+"\n Invoice Id : "+pm.getAdId()
+		+"\n Promotion Category : "+pm.getPromotionCategory()
+		+"\n Amount Paid : "+pm.getTotal()
+		+"\n"+"\n Thanks for Chhoosing Us");
 		return pm;
 	}
 	

@@ -1,8 +1,10 @@
 package com.operation.hireAd;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.operation.db;
@@ -12,16 +14,13 @@ import com.operation.db;
 
 public class HireAdDataAccess {
 	
-	@Autowired
-	HireAd hire;
+	
 	
 	PreparedStatement pst;
 		
 	
-	
 	public HireAd insertAd(HireAd hire) {
 		try {
-			
 			pst = db.get().prepareStatement("insert into hire_ad values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			pst.setString(1, null);
 			pst.setString(2, hire.getTitle());
@@ -42,4 +41,34 @@ public class HireAdDataAccess {
 		}
 		return hire;
 	}
+	
+	public List<HireAd>getAllAd(HireAd  hire){
+		List<HireAd>hList = new ArrayList<>();
+		try {
+			pst  = db.get().prepareStatement("select * from hire_ad");
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				hire.setAdId(rs.getInt(1));
+				hire.setTitle(rs.getString(2));
+				hire.setLocation(rs.getString(3));
+				hire.setName(rs.getString(4));
+				hire.setPhone(rs.getString(5));
+				hire.setEmail(rs.getString(6));
+				hire.setAddress(rs.getString(7));
+				hire.setType(rs.getString(8));
+				hire.setPurpose(rs.getString(9));
+				hire.setCity(rs.getString(10));
+				hire.setFacing(rs.getString(11));
+				hire.setOtherInfo(rs.getString(12));
+				hire.setVendorId(rs.getInt(13));
+				hList.add(hire);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		return hList;
+	}
+	
+	
 }
