@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,5 +24,11 @@ public class PromotionController {
 	public  List<Promotion>getPromotion(Promotion pm){
 		PromotionDataAccess pda = new PromotionDataAccess();
 		return pda.showPromotion(pm);
+	}
+	
+	@GetMapping(value = "/getPromoById/{adId}")
+	public Promotion getPromoDataById(@PathVariable("adId")int adId) {
+		PromotionDataAccess pdata  = new  PromotionDataAccess();
+		 return pdata.getPromoById(adId);
 	}
 }

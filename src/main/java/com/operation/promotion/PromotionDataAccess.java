@@ -69,4 +69,39 @@ public class PromotionDataAccess {
 		}
 		return  promoList;
 	}
+	
+	public Promotion getPromoById(int adId) {
+		Promotion  promo=  null;
+		try {
+			pst  = db.get().prepareStatement("select * from promotion where adId = ?");
+			pst.setInt(1, adId);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				promo = new Promotion();
+				promo.setPromotionId(rs.getInt(1));
+				promo.setAdId(rs.getInt(2));
+				promo.setPromotionCategory(rs.getString(3));
+				promo.setEmail(rs.getString(4));
+				promo.setCardNumber(rs.getString(5));
+				promo.setExpireDate(rs.getString(6));
+				promo.setCvv(rs.getString(7));
+				promo.setCardHolderName(rs.getString(8));
+				promo.setMfs(rs.getString(9));
+				promo.setMfsNumber(rs.getString(10));
+				promo.setTsNumber(rs.getString(11));
+				promo.setSubTotal(rs.getDouble(12));
+				promo.setVat(rs.getDouble(13));
+				promo.setTotal(rs.getDouble(14));
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
+		return promo;
+		
+	}
+	
 }

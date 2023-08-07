@@ -34,11 +34,11 @@ public class AdController {
 	
 	@GetMapping(value ="/ad/{id}")
 	public AdManagement  getAdById(@PathVariable("id") int id) {
-		AdManagement ad;
 		AdDataAccess adData = new AdDataAccess();
-		ad =  adData.adById(id);
+		AdManagement ad =  adData.adById(id);
 		return ad;
 	}
+	
 	@PostMapping(value =  "/update")
 	public AdManagement updateAdData(@RequestBody AdManagement ad) {
 		AdDataAccess adData =  new AdDataAccess();
