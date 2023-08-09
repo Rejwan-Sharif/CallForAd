@@ -5,10 +5,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.operation.db;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.operation.db;
+import com.operation.mail.EmailSenderService;
+
+@Service 
 public class NewspaperDataAccess {
  PreparedStatement pst;
+ 
+ @Autowired
+ EmailSenderService mail;
  
  public Newspaper insertData(Newspaper nm) {
 	  try {
@@ -28,6 +36,14 @@ public class NewspaperDataAccess {
 	} catch (Exception e) {
 		// TODO: handle exception
 	}
+	  mail.sendEmail(nm.getEmail(),"Request Submitted", "Dear, "+nm.getName()
+	  	+"\n News Paper Name : "+nm.getNewspaperName()
+	  	+"\n Publishing date : "+nm.getPublishDate()
+	  	+"\n Ad Title : "+nm.getAdTitle()
+	  	+"\n Ad description : "+nm.getAdDescription()
+	  	+"\n"+"\n Your Newspaper Ad Request Submitted Successfully."
+		+"\n We Will Process Your Request as soon as possible"
+		+"\n"+"\n Thanks for Chhoosing Us");
 	 return nm;
  }
  

@@ -2,6 +2,8 @@ package com.operation.newspaper;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Service;
+@Service
 public class Newspaper {
 	
 	private int id;
