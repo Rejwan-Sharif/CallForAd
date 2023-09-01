@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.operation.db;
@@ -36,6 +37,7 @@ public class NewspaperDataAccess {
 	} catch (Exception e) {
 		// TODO: handle exception
 	}
+	 
 	  mail.sendEmail(nm.getEmail(),"Request Submitted", "Dear, "+nm.getName()
 	  	+"\n News Paper Name : "+nm.getNewspaperName()
 	  	+"\n Publishing date : "+nm.getPublishDate()

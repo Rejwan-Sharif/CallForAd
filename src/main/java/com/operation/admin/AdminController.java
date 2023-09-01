@@ -3,6 +3,7 @@ package com.operation.admin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,32 +22,34 @@ import com.operation.ad.AdManagement;
 
 public class AdminController {
 	 
+	
+	@Autowired
+	AdminDataAccess admin;
+	
+	@Autowired
+	AdManagement adData;
+	
 	@PostMapping(value = "/adminLogin")
 	public  Admin adminLogin(@RequestBody Admin ad) {
-		AdminDataAccess admin = new AdminDataAccess();
 		return admin.login(ad);
 	}
 	
 	public List<AdManagement>adList = new ArrayList<>();
 	@GetMapping(value ="/showAdminData")
 	public List<AdManagement> getAd(AdminDataAccess adm){
-		adm = new AdminDataAccess();
 		adList = adm.showAdList();
 		return adList;
 	}
 	
 	@GetMapping(value ="/adminAd/{id}")
 	public AdManagement  getAdById(@PathVariable("id") int id) {
-		
-		AdminDataAccess adData = new AdminDataAccess();
-		  return adData.adminAdById(id);
+		  return admin.adminAdById(id);
 		
 	}
 	
 	@PostMapping(value =  "/updateAdStatus")
 	public void updateAdData(@RequestBody AdManagement ad) {
-		AdminDataAccess adData =  new AdminDataAccess();
-		 adData.updateStatus(ad);
+		admin.updateStatus(ad);
 	}
 	
 	public List<AdManagement>allData=new ArrayList<>();
@@ -59,16 +62,14 @@ public class AdminController {
 	
 	@GetMapping(value ="/detailAd/{id}")
 	public AdManagement  getDetailAd(@PathVariable("id") int id) {
-		AdManagement ad;
-		AdminDataAccess adData = new AdminDataAccess();
-		ad =  adData.adminAdById(id);
-		return ad;
+		return adData =  admin.adminAdById(id);
+		
 	}
 	
 	@GetMapping(value = "/showProAd")
 	public List<AdManagement>getProAd(AdManagement adm){
-		AdminDataAccess ada= new  AdminDataAccess();
-		return ada.showProList(adm);
+		
+		return admin.showProList(adm);
 	}
 	
 	

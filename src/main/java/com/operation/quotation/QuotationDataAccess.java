@@ -6,8 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.operation.db;
 
+
+@Service
 public class QuotationDataAccess {
 	
 	public PreparedStatement pst;

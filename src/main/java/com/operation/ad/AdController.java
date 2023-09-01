@@ -4,6 +4,8 @@ package com.operation.ad;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-
+@Service
 public class AdController {
-
+	
+	@Autowired
+	AdDataAccess data;
+	
+	@Autowired
+	AdManagement ad;
+	
 	@PostMapping(value = "/adData")
 	public void adSubmission(@RequestBody AdManagement ad) {
-		AdDataAccess data = new AdDataAccess();
 		data.postAd(ad);
 	}
 	
@@ -27,28 +34,24 @@ public class AdController {
 	
 	@GetMapping(value = "/getData/{vendorId}")
 	public List<AdManagement> getAd(@PathVariable("vendorId") int vendorId){
-		AdDataAccess adData = new AdDataAccess();
-		return adData.showAd(vendorId);
+		return data.showAd(vendorId);
 		
 	}
 	
 	@GetMapping(value ="/ad/{id}")
 	public AdManagement  getAdById(@PathVariable("id") int id) {
-		AdDataAccess adData = new AdDataAccess();
-		AdManagement ad =  adData.adById(id);
-		return ad;
+		return ad =  data.adById(id);
+		
 	}
 	
 	@PostMapping(value =  "/update")
 	public AdManagement updateAdData(@RequestBody AdManagement ad) {
-		AdDataAccess adData =  new AdDataAccess();
-		return adData.updateAd(ad);
+		return data.updateAd(ad);
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
 	public boolean deleteAd(@PathVariable("id") int id) {
-		AdDataAccess adData = new AdDataAccess();
-		return adData.delete(id);
+		return data.delete(id);
 	}
 	
 }

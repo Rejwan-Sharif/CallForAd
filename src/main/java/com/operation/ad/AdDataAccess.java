@@ -5,16 +5,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 
 import com.operation.db;
 
+@Service
 
 public class AdDataAccess {
   
   public PreparedStatement pst;
   
   
+  
   public void postAd(AdManagement ad) {
+	  
 	  
 	  try {
 		 pst =  db.get().prepareStatement("insert into ad values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");

@@ -36,6 +36,7 @@ public class PromotionDataAccess {
 			pst.setDouble(13, pm.getVat());
 			pst.setDouble(14, pm.getTotal());
 			pst.executeUpdate();
+	
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);

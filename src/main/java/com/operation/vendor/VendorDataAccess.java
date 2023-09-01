@@ -3,8 +3,11 @@ package com.operation.vendor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.springframework.stereotype.Service;
+
 import com.operation.db;
 
+@Service
 public class VendorDataAccess {
 	
 public PreparedStatement pst;

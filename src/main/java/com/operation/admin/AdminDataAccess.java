@@ -5,9 +5,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.operation.db;
 import com.operation.ad.AdManagement;
 
+@Service
 public class AdminDataAccess {
 
 	PreparedStatement pst;
