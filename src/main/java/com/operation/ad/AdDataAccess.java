@@ -11,7 +11,7 @@ import com.operation.db;
 
 @Service
 
-public class AdDataAccess {
+public class AdDataAccess{
   
   public PreparedStatement pst;
   
@@ -115,8 +115,10 @@ public class AdDataAccess {
      
      public AdManagement adById(int id) {
     	 AdManagement ad = null;
+    	 
     	 try {
-			pst = db.get().prepareStatement("select  * from ad where  ad_id = ?");
+			pst = db.get().prepareStatement("select a.ad_id,a.title,a.location,a.type,a.status,a.height,a.width,a.area,a.purpose,a.facing,"
+					+ "a.price,a.title_image,a.second_image,a.third_image,a.fourth_image,a.final_image,a.other_details, b.first_name, b.last_name,b.email,b.phone, b.city,b.photo from ad a join vendor b on (a.vendor_id = b.id) where a.ad_id = ?");
 			pst.setInt(1,id);
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {
@@ -138,6 +140,14 @@ public class AdDataAccess {
 				ad.setFourth_image(rs.getString(15));
 				ad.setFinal_image(rs.getString(16));
 				ad.setOther_details(rs.getString(17));
+				ad.setPromotionStatus(rs.getString(18));
+				ad.setFirstName(rs.getString(18));
+				ad.setLastName(rs.getString(19));
+				ad.setEmail(rs.getString(20));
+				ad.setPhone(rs.getString(21));
+				ad.setCity(rs.getString(22));
+				ad.setPhoto(rs.getString(23));
+				
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

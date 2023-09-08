@@ -32,5 +32,11 @@ public class AdManagement {
 	private String adStatus;
 	private int vendorId;
 	private String promotionStatus;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String phone;
+	private String photo;
+	private String city;
 
 }
