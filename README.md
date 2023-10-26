@@ -2,7 +2,7 @@
 
 Advertising Management System
 
-The Advertising Management System is a comprehensive web application that combines Spring Boot for the backend and Angular for the front end. The project's main goal is to simplify the process of managing and promoting advertisements, and catering to vendors, regular users, and administrators.
+The Advertising Management System is a comprehensive web application that combines Spring Boot for the backend and Angular for the front end. The project's main goal is to simplify the process of managing and promoting advertisements and catering to vendors, regular users, and administrators.
 
 Key Features:
 
@@ -14,10 +14,10 @@ User Engagement: Interested users can interact with advertisements by sending qu
 
 Newspaper Ad Requests: Users can submit requests for newspaper advertisements through the system, streamlining the process of getting ads published in newspapers.
 
-Admin Control: The admin panel plays a crucial role in the system's operation. Administrators review and approve vendor-submitted posts and payment information. Once approved, the ads are displayed on the webpage. Admins also manage newspaper ads, user accounts, and have access to insightful charts and summaries for monitoring system performance.
+Admin Control: The admin panel plays a crucial role in the system's operation. Administrators review and approve vendor-submitted posts and payment information. Once approved, the ads are displayed on the webpage. Admins also manage newspaper ads, and user accounts, and have access to insightful charts and summaries for monitoring system performance.
 
 Technologies Used:
 
 Backend: Spring Boot, MySQL, JDBC, Jasper Reports, JWT Authentication.
 
-Frontend link: [Angular] https://github.com/Rejwan-Sharif/call-for-ad)https://github.com/Rejwan-Sharif/call-for-ad. 
+Frontend link: [Angular] https://github.com/Rejwan-Sharif/call-for-ad. 
